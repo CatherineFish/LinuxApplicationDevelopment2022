@@ -9,7 +9,8 @@ int main(int argc, char* argv[])
     char bufferStr[BUFFERSIZE];
     char *resultStr;
     unsigned bufferStrLen;
-    resultStr = (char*) malloc(1 * sizeof(resultStr));
+    resultStr = (char*) malloc(BUFFERSIZE * sizeof(resultStr));
+    fgets(resultStr, BUFFERSIZE, stdin);
     while (fgets(bufferStr, BUFFERSIZE, stdin))
     {
         bufferStrLen = strlen(bufferStr);
@@ -17,5 +18,9 @@ int main(int argc, char* argv[])
         strcat(resultStr, bufferStr);
     }
     printf("Hello, %s!\n", resultStr);
+    if (resultStr)
+    {
+        free(resultStr);
+    }
     return 0; 
 }
