@@ -17,7 +17,7 @@ test:	esub
 	diff result_etalon_3 result_3
 
 
-range:	esub.c
+resub:	esub.c
 	cc $(CFLAGS) $< -o $@
 
 clean:
