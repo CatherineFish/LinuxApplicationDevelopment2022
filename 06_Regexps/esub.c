@@ -4,12 +4,76 @@
 #include <ctype.h>
 #include <string.h>
 
-
 enum condition
 {
     NOTHING,
-    WAS_SLASH
+    WAS_SLASH,
+    WAS_TWO_SLASH
 } flag;
+
+char* deleteSlach(char * src)
+{
+    char * ptr = src;
+    char *resultStr;
+    int cur = 0;
+    char currentC;
+    flag = NOTHING;
+    while ((currentC = *ptr++) != '\0') 
+    {
+        if (currentC == '\\')
+        {
+            if (flag == NOTHING)
+            {
+                flag = WAS_SLASH;
+                cur++;
+            }
+            else
+            {
+                flag = NOTHING;
+                continue;
+            }
+
+        } else if (flag == WAS_SLASH)
+        {
+            flag = NOTHING;
+            cur++;
+        } else {
+            cur++;
+        }
+        
+    }
+    resultStr = (char *)malloc((cur + 1) * sizeof(*resultStr));
+    ptr = src;
+    cur = 0;
+    while ((currentC = *ptr++) != '\0') 
+    {
+        if (currentC == '\\')
+        {
+            if (flag == NOTHING)
+            {
+                flag = WAS_SLASH;
+                resultStr[cur] = currentC;
+                cur++;
+            }
+            else
+            {
+                flag = NOTHING;
+            }
+
+        } else if (flag == WAS_SLASH)
+        {
+            flag = NOTHING;
+            resultStr[cur] = currentC;
+            cur++;
+        } else {
+            resultStr[cur] = currentC;
+            cur++;
+        }
+        
+    }
+    
+    return resultStr;
+}
 
 int parseSubstitution(char* substr)
 {
@@ -32,6 +96,7 @@ int parseSubstitution(char* substr)
             }
         } 
     }
+
     return result;
 }
 
@@ -66,21 +131,19 @@ char* makeNewString(char* src, regmatch_t* pmatch, char* substr)
     }
     size = pmatch[0].rm_so;
     realsize = size + 1;
-    printf("SUBRES: %s\n", resultStr);
-    
     flag = NOTHING;
     while ((currentC = *ptr++) != '\0') 
     {
-        if (currentC == '\\')
+        if (currentC == '\\' && (flag == NOTHING || flag == WAS_SLASH))
         {
-            if (flag == NOTHING || flag == WAS_SLASH)
+            if (flag == NOTHING)
                 flag = WAS_SLASH;
-        } else if (isdigit(currentC) && flag == WAS_SLASH)
+            else 
+                flag = WAS_TWO_SLASH;
+        } else if (isdigit(currentC) && (flag == WAS_SLASH || WAS_TWO_SLASH))
         {
             int cnt = atoi(&currentC);
-            
             resultStr = (char*)realloc(resultStr, (realsize + (pmatch[cnt].rm_eo - pmatch[cnt].rm_so))* sizeof(*resultStr));
-            printf("%d %d %s %d\n", cnt, size, resultStr, pmatch[cnt].rm_eo - pmatch[cnt].rm_so);
             strncpy(resultStr + size, src + pmatch[cnt].rm_so, pmatch[cnt].rm_eo - pmatch[cnt].rm_so);
             size += pmatch[cnt].rm_eo - pmatch[cnt].rm_so;
             realsize = size + 1; 
@@ -126,19 +189,17 @@ int main (int argc, char* argv[])
     }
     
     pocketCnt = parseSubstitution(argv[2]); 
-    char* src = argv[3];
+    char* src = deleteSlach(argv[3]);
     char* substr = argv[2];        
-    printf("%d\n", pocketCnt);
-    //reti = regexec(&regex, argv[3], 0, NULL, 0);
     regmatch_t pmatch[pocketCnt];
     if ((reti = regexec(&regex, argv[3], pocketCnt + 1, pmatch, 0)) == 0) {
         if (pmatch[pocketCnt].rm_so < 0)
         {
-            fprintf(stderr, "Wrong pocket count");
-            exit(1);
+            fprintf(stderr, "Wrong pocket count\n");
+            return 0;
         }
         char* resultStr = makeNewString(src, pmatch, substr);
-        printf("RESULT: %s\n", resultStr);
+        printf("%s\n", resultStr);
         if (resultStr != NULL)
             free(resultStr);
     }
