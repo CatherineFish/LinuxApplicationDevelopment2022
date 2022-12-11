@@ -1,0 +1,48 @@
+# Russian translations for  09_I18n package
+# Английские переводы для пакета  09_I18n.
+# Copyright (C) 2022 THE  09_I18n'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the  09_I18n package.
+# CatherineFish <katerinasheps@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  09_I18n\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-12 01:08+0300\n"
+"PO-Revision-Date: 2022-12-12 01:27+0300\n"
+"Last-Translator: CatherineFish <katerinasheps@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: src/guessNumber.c:21
+#, c-format
+msgid "Make a number from 1 to 100\n"
+msgstr "Загадайте число от 1 до 100\n"
+
+#: src/guessNumber.c:25
+#, c-format
+msgid "Is number greater %d?\n"
+msgstr "Число больше чем %d?\n"
+
+#: src/guessNumber.c:32
+msgid "yes"
+msgstr "да"
+
+#: src/guessNumber.c:35
+msgid "no"
+msgstr "нет"
+
+#: src/guessNumber.c:39
+#, c-format
+msgid "Wrong answer, 'yes'/'no' are avaliable\n"
+msgstr "Неправильный ответ, 'да'/'нет' допустимы\n"
+
+#: src/guessNumber.c:42
+#, c-format
+msgid "Result! Your number is %d\n"
+msgstr "Результат! твоё число %d\n"
