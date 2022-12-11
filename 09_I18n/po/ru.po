@@ -45,4 +45,4 @@ msgstr "Неправильный ответ, 'да'/'нет' допустимы\
 #: src/guessNumber.c:42
 #, c-format
 msgid "Result! Your number is %d\n"
-msgstr "Результат! твоё число %d\n"
+msgstr "Результат! Ваше число %d\n"
