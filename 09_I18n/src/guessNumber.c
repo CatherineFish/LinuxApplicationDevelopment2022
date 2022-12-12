@@ -1,13 +1,13 @@
 #include <stdio.h> 
 #include <string.h>
 #include <libintl.h>
+#include <libgen.h>
 #include <locale.h>
 #include <stdlib.h>
 
 #include "config.h"
 
 #define _(STRING) gettext(STRING)
-#define LOCALE_PATH "po"
 
 int main (int argc, char *argv[])
 {
