@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  09_I18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 01:08+0300\n"
-"PO-Revision-Date: 2022-12-12 01:27+0300\n"
+"POT-Creation-Date: 2022-12-12 02:56+0300\n"
+"PO-Revision-Date: 2022-12-12 03:12+0300\n"
 "Last-Translator: CatherineFish <katerinasheps@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -40,9 +40,9 @@ msgstr "нет"
 #: src/guessNumber.c:39
 #, c-format
 msgid "Wrong answer, 'yes'/'no' are avaliable\n"
-msgstr "Неправильный ответ, 'да'/'нет' допустимы\n"
+msgstr "Неправильный ответ, 'да'/'нет' доступны\n"
 
 #: src/guessNumber.c:42
 #, c-format
 msgid "Result! Your number is %d\n"
-msgstr "Результат! твоё число %d\n"
+msgstr "Результат! Ваше число %d\n"
