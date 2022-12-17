@@ -12,8 +12,8 @@
 int main (int argc, char *argv[])
 {
 	setlocale(LC_ALL, "");
-	bindtextdomain("guessNumber", LOCALE_PATH);
-	textdomain ("guessNumber");
+	bindtextdomain("guessnumber", LOCALE_PATH);
+	textdomain ("guessnumber");
 	int start = 1,end = 100, med;
 	char *answer = NULL;
 	size_t len = 4;

@@ -2,13 +2,13 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([guessNumber], [0.0], [katerinasheps@gmail.com])
+AC_INIT([guessnumber], [0.0], [katerinasheps@gmail.com])
 AM_INIT_AUTOMAKE([foreign])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION(0.21)
 AC_SUBST(GETTEXT_PACKAGE, $PACKAGE)
 ALL_LINGUAS="ru"
-AC_CONFIG_SRCDIR([src/guessNumber.c])
+AC_CONFIG_SRCDIR([src/guessnumber.c])
 AC_SUBST(GETTEXT_PACKAGE, $PACKAGE)
 AC_CONFIG_HEADERS([config.h])
 
